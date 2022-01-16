@@ -1,0 +1,15 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+*{
+	font-family : 'Nanum Gothic';
+}
+h1{
+	font-family : 'Hanna';
+}
+
+.navbar-nav .open .dropdown-menu > li > a:hover,
+.navbar-nav .open .dropdown-menu > li > a:focus {
+	  	font-size:10px;
+	  	background-color:yellow;
+	    background-image: none;
+}

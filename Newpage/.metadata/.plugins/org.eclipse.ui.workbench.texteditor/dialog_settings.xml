@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="carousel-control"/>
+		<item key="selection" value="getNext"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="getNext"/>
+			<item value="getne"/>
+			<item value="get"/>
 			<item value="carousel-control"/>
 			<item value="btn-pr"/>
 			<item value="btn-lg"/>
@@ -20,9 +23,6 @@
 			<item value="pageNum"/>
 			<item value="next"/>
 			<item value="test"/>
-			<item value="글 제목"/>
-			<item value="1"/>
-			<item value="write"/>
 		</list>
 		<list key="replacehistory">
 		</list>

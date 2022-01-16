@@ -155,6 +155,30 @@ public class BbsDAO {
 		}
 		return -1; //아니면ㄴ -1을 반환하는 것 
 	}
+	public ArrayList<Bbs> getSearch(String searchField, String searchText){
+	      ArrayList<Bbs> list = new ArrayList<Bbs>();
+	      String SQL ="select * from bbs WHERE "+searchField.trim();
+	      try {
+	            if(searchText != null && !searchText.equals("") ){
+	                SQL +=" LIKE '%"+searchText.trim()+"%' order by bbsID desc limit 10";
+	            }
+	            PreparedStatement pstmt=conn.prepareStatement(SQL);
+				rs=pstmt.executeQuery();//select
+	         while(rs.next()) {
+	            Bbs bbs = new Bbs();
+	            bbs.setBbsID(rs.getInt(1));
+	            bbs.setBbsTitle(rs.getString(2));
+	            bbs.setUserID(rs.getString(3));
+	            bbs.setBbsDate(rs.getString(4));
+	            bbs.setBbsContent(rs.getString(5));
+	            bbs.setBbsAvailable(rs.getInt(6));
+	            list.add(bbs);//list에 해당 인스턴스를 담는다.
+	         }         
+	      } catch(Exception e) {
+	         e.printStackTrace();
+	      }
+	      return list;//ㄱㅔ시글 리스트 반환
+	   }
 	
 	
 }

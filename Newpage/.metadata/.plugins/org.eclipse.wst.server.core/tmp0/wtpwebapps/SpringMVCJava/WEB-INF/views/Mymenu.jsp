@@ -14,8 +14,13 @@
 <title>Insert title here</title>
 <style>
 	.hi{
-		background-color:yellow;
-		font-size:30px;
+		font-size:20px;
+	}
+	.navbar-nav .open .dropdown-menu > li > a:hover,
+	.navbar-nav .open .dropdown-menu > li > a:focus {
+	  	font-size:30px;
+	  	background-color:yellow;
+	    background-image: url('image/im4.png');
 	}
 	.bye{
 		display:block;
@@ -25,6 +30,9 @@
 	    background-color:#222;
 	    color:#fff;
 	    float:right;
+	}
+	li{
+		font-size:15px;
 	}
 	a{
 		color:black;
@@ -45,9 +53,9 @@
 			pageNumber=Integer.parseInt(request.getParameter("pageNumber"));
 		}
 	%> 
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-inverse">
 		<div class="navbar-header">
-			<a class="navbar-brand" href ="mainpage">JSP활용한 페이지 만들기</a>
+			<a class="navbar-brand" href ="mainpage" style="font-size:25px;">JSP활용한 페이지 만들기</a>
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
 			data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <!-- collapse는 숨기기 기능  -->
 				<span class="icon-bar"></span>
@@ -58,8 +66,8 @@
 		</div>
 		<div class="collapse navbar-collapse" id =bs-example-navbar-collapse-1>
 			<ul class="nav navbar-nav">
-				<li><a href="mainpage">메인</a></li>
-				<li><a href="Mymenu">내가 만들 메뉴</a></li>
+				<li style="font-size:15px;"><a href="mainpage">메인</a></li>
+				<li style="font-size:15px;"><a href="Mymenu">내가 만들 메뉴</a></li>
 			</ul>
 			
 			<%
@@ -93,16 +101,33 @@
 				}
 			%>
 			
-		</div>
+		</div>	
 	</nav>
+	
 	<div class="container">
-		<table class="table table-striped" style="text-align:center; border:1px solid #dddddd">
+		<form method="post" name="search" action="searchpage">
+				<table class="pull-right">
+					<tr>
+						<td><select class="form-control" name="searchField">
+								<option value="0">선택</option>
+								<option value="bbsTitle">제목</option>
+								<option value="userID">작성자</option>
+						</select></td>
+						<td><input type="text" class="form-control"
+							placeholder="검색어 입력" name="searchText" maxlength="100"></td>
+						<td><button type="submit" class="btn btn-success">검색</button></td>
+					</tr>
+
+				</table>
+		</form>
+
+		<table class="table table-striped" style="text-align:center; border:1px solid #dddddd;">
 			<thead><!-- 테이블의 제목부분으로 가장 윗줄에 해당하여 각각의 속성을 알려줌 -->
 				<tr> <!-- 테이블의 하나의 행을 의미 -->
-					<th style="text-align:center; border:1px solid #eeeeee">번호</th>
-					<th style="text-align:center; border:1px solid #eeeeee">제목</th>
-					<th style="text-align:center; border:1px solid #eeeeee">작성자</th>
-					<th style="text-align:center; border:1px solid #eeeeee">작성일</th>
+					<th style="text-align:center; border:1px solid #eeeeee; background-color:#90EE90;">번호</th>
+					<th style="text-align:center; border:1px solid #eeeeee; background-color:#90EE90;">제목</th>
+					<th style="text-align:center; border:1px solid #eeeeee; background-color:#90EE90;">작성자</th>
+					<th style="text-align:center; border:1px solid #eeeeee; background-color:#90EE90;">작성일</th>
 				</tr>
 			</thead>
 			<tbody>

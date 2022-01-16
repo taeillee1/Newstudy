@@ -14,10 +14,16 @@
 		background-color:yellow;
 		font-size:30px;
 	}
-	.taeil{
-		margin-top:20px;
-		background-color:yellow;
-		height : 1500px;
+	
+	.jumbotron {
+	  padding-top: 30px;
+	  padding-bottom: 30px;
+	  margin-bottom: 30px;
+	  color: inherit;
+	  background-color: white;
+	}
+	li{
+		font-size:15px;
 	}
 </style>
 </head>
@@ -28,9 +34,9 @@
 			userID=(String)session.getAttribute("userID");
 		}
 	%> 
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-inverse">
 		<div class="navbar-header">
-			<a class="navbar-brand" href ="mainpage">JSP활용한 페이지 만들기</a>
+			<a class="navbar-brand" href ="mainpage" style="font-size:25px;">JSP활용한 페이지 만들기</a>
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
 			data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <!-- collapse는 숨기기 기능  -->
 				<span class="icon-bar"></span>
@@ -41,8 +47,8 @@
 		</div>
 		<div class="collapse navbar-collapse" id =bs-example-navbar-collapse-1>
 			<ul class="nav navbar-nav">
-				<li><a href="mainpage">메인</a></li>
-				<li><a href="Mymenu">내가 만들 메뉴</a></li>
+				<li style="font-size:15px;"><a href="mainpage">메인</a></li>
+				<li style="font-size:15px;"><a href="Mymenu">내가 만들 메뉴</a></li>
 			</ul>
 			
 			<%
@@ -82,7 +88,7 @@
 		<div class="container">
 			<h1>웹 사이트 소개.</h1>
 			<p>이 웹사이트는 이태일이 만든 웹사이트입니다.<br>앞으로 잘 부탁드립니다.<br>즐겁게 만들어본 웹페이지 입니다.</p>
-			<p><a class="btn btn-primary btn-lg" href="#" role="button" style = "background-color: red; border-color:black;">Learn more</a></p>
+			<p><a class="btn btn-primary btn-lg" href="#" role="button" style = "background-color: white; border-color:white; color:black;">Learn more</a></p>
 		</div>
 	</div>
 	

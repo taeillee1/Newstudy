@@ -13,15 +13,18 @@
 		font-size:15px;
 		padding:10px;
 	}
+	li{
+		font-size:15px;
+	}
 </style>
 </head>
 <body>
 	<!-- <img src="image/imimim.png"/> -->
 	<!-- <a href="test1">test1</a> -->
 	<!-- <button onclick="location='test1'">버튼 클릭시 이동</button> -->
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-inverse">
 		<div class="navbar-header">
-			<a class="navbar-brand" href ="index">JSP활용한 페이지 만들기</a>
+			<a class="navbar-brand" href ="index" style="font-size:25px;">JSP활용한 페이지 만들기</a>
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
 			data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <!-- collapse는 숨기기 기능  -->
 				<span class="icon-bar"></span>
@@ -32,8 +35,8 @@
 		</div>
 		<div class="collapse navbar-collapse" id =bs-example-navbar-collapse-1>
 			<ul class="nav navbar-nav">
-				<li><a href="mainpage">메인</a></li>
-				<li><a href="Mymenu">내가 만들 메뉴</a></li>
+				<li style="font-size:15px;"><a href="mainpage">메인</a></li>
+				<li style="font-size:15px;"><a href="Mymenu">내가 만들 메뉴</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
@@ -48,7 +51,7 @@
 			
 		</div>
 	</nav>
-	<!-- 로그인 양식 만들기 -->
+	<!-- 회원가입 양식 만들기 -->
 	<div class="container">
 		<div class="col-lg-4"></div>
 		<div class="col-lg-4">

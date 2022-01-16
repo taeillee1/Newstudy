@@ -39,7 +39,7 @@
 		}else{
 			UserDAO userDAO = new UserDAO();
 			int result = userDAO.join(user);
-			if(result ==-1){//비밀번호가 맞을떄
+			if(result ==-1){
 				PrintWriter script = response.getWriter();
 				script.println("<script>"); //jsp파일에서 html처럼 페이지를 이동시킬때 사용하는 방법
 				script.println("alert('이미 ID가 존재합니다')");
