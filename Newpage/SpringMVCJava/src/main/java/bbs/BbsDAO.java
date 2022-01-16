@@ -106,6 +106,7 @@ public class BbsDAO {
 		}
 		return false; 
 	}
+	
 
 	public Bbs getBbs(int bbsID) {
 		String SQL = "SELECT *FROM BBS WHERE bbsID = ?";
@@ -155,15 +156,17 @@ public class BbsDAO {
 		}
 		return -1; //아니면ㄴ -1을 반환하는 것 
 	}
-	public ArrayList<Bbs> getSearch(String searchField, String searchText){
+	
+	public ArrayList<Bbs> getSearch(int pageNumber, String searchField, String searchText){
 	      ArrayList<Bbs> list = new ArrayList<Bbs>();
-	      String SQL ="select * from bbs WHERE "+searchField.trim();
+	      String SQL ="select * from bbs WHERE "+searchField;
 	      try {
 	            if(searchText != null && !searchText.equals("") ){
-	                SQL +=" LIKE '%"+searchText.trim()+"%' order by bbsID desc limit 10";
+	                SQL +=" LIKE '%"+searchText.trim()+"%' order by bbsID desc LIMIT "+pageNumber*10;
 	            }
 	            PreparedStatement pstmt=conn.prepareStatement(SQL);
-				rs=pstmt.executeQuery();//select
+	            
+				rs=pstmt.executeQuery();
 	         while(rs.next()) {
 	            Bbs bbs = new Bbs();
 	            bbs.setBbsID(rs.getInt(1));
@@ -179,6 +182,36 @@ public class BbsDAO {
 	      }
 	      return list;//ㄱㅔ시글 리스트 반환
 	   }
+	public int getCount(String searchField, String searchText) {
+		String SQL = "select count(*) from bbs WHERE "+searchField;
+	      try {
+	            if(searchText != null && !searchText.equals("") ){
+	                SQL +=" LIKE '%"+searchText.trim()+"%' order by bbsID desc LIMIT 10";
+	            }
+	            PreparedStatement pstmt=conn.prepareStatement(SQL);
+	            
+				rs=pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getInt(1);
+			}			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
 	
+	public int getCount() {
+		String SQL = "select count(*) from bbs";
+		try {
+			PreparedStatement pstmt=conn.prepareStatement(SQL);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getInt(1);
+			}			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
 	
 }

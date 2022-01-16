@@ -44,10 +44,20 @@
 </head>
 <body>
 	<% 
+		request.setCharacterEncoding("UTF-8");
+		String searchField="선택";
+		String searchText="";
 		String userID=null;
 		if(session.getAttribute("userID") != null){
 			userID=(String)session.getAttribute("userID");
 		}
+		if(request.getParameter("searchField")!=null){
+			searchField=request.getParameter("searchField");
+		}
+		if(request.getParameter("searchText")!=null){
+			searchText=request.getParameter("searchText");
+		}
+		
 		int pageNumber=1;
 		if(request.getParameter("pageNumber")!=null){
 			pageNumber=Integer.parseInt(request.getParameter("pageNumber"));
@@ -105,6 +115,11 @@
 	</nav>
 	
 	<div class="container">
+	<%
+	BbsDAO bbsDAO = new BbsDAO();
+	String a= request.getParameter("searchField");
+	String b= request.getParameter("searchText");
+	%>
 		<form method="post" name="search" action="searchpage">
 				<table class="pull-right">
 					<tr>
@@ -119,6 +134,7 @@
 					</tr>
 
 				</table>
+
 		</form>
 
 		<table class="table table-striped" style="text-align:center; border:1px solid #dddddd">
@@ -132,9 +148,9 @@
 			</thead>
 			<tbody>
 					<%
-						BbsDAO bbsDAO = new BbsDAO();
-						ArrayList<Bbs> list = bbsDAO.getSearch(request.getParameter("searchField"),
-								request.getParameter("searchText"));
+						ArrayList<Bbs> list = bbsDAO.getSearch(pageNumber,a,b);
+						
+						
 						if (list.size() == 0) {
 							PrintWriter script = response.getWriter();
 							script.println("<script>");
@@ -158,18 +174,32 @@
 					%>
 				</tbody>
 		</table>
-		<%
-			if(pageNumber !=1){
-		%>
-			<a href = "Mymenu?pageNumber=<%=pageNumber-1 %>" class="btn btn-success btn-arraw-left">이전</a>
-		<%
-			}if(bbsDAO.nextPage(pageNumber +1)){
-		%>
-			<a href = "Mymenu?pageNumber=<%=pageNumber+1 %>" class="btn btn-success btn-arraw-left">다음</a>
-		<%
-			}
-		%>
-		<a href="write" class="bye">글쓰기</a>
+		<div class=container style="text-align: center; font-size:20px; padding:30px;">
+				<%
+					if (pageNumber != 1) {//이전페이지로
+				%>
+				<a href="searchpage?pageNumber=<%=pageNumber - 1%>">◀ 이전</a>
+				<%
+					}
+				%>
+				<%
+					int n = (int) (bbsDAO.getCount(a,b) / 10 + 1);
+					for (int i = 1; i <= n; i++) {
+				%>
+				<a href="searchpage?pageNumber=<%=i%>"><%=i%>
+				</a>
+				<%
+					}
+				%>
+				<%
+					if (bbsDAO.nextPage(pageNumber + 1)) {
+				%>
+				<a href="searchpage?pageNumber=<%=pageNumber + 1%>">다음 ▶</a>
+				<%
+					}
+				%>
+				<a href="write" class="btn btn-success pull-right">글쓰기</a>
+			</div>
 		
 	</div>
 	

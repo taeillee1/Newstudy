@@ -147,18 +147,32 @@
 				%>
 			</tbody>
 		</table>
-		<%
-			if(pageNumber !=1){
-		%>
-			<a href = "Mymenu?pageNumber=<%=pageNumber-1 %>" class="btn btn-success btn-arraw-left">이전</a>
-		<%
-			}if(bbsDAO.nextPage(pageNumber +1)){
-		%>
-			<a href = "Mymenu?pageNumber=<%=pageNumber+1 %>" class="btn btn-success btn-arraw-left">다음</a>
-		<%
-			}
-		%>
-		<a href="write" class="bye">글쓰기</a>
+		<div class=container style="text-align: center; font-size:20px; padding:30px;">
+				<%
+					if (pageNumber != 1) {//이전페이지로
+				%>
+				<a href="Mymenu?pageNumber=<%=pageNumber - 1%>">◀ 이전</a>
+				<%
+					}
+				%>
+				<%
+					int n = (int) (bbsDAO.getCount() / 10 + 1);
+					for (int i = 1; i <= n; i++) {
+				%>
+				<a href="Mymenu?pageNumber=<%=i%>"><%=i%>
+				</a>
+				<%
+					}
+				%>
+				<%
+					if (bbsDAO.nextPage(pageNumber + 1)) {
+				%>
+				<a href="Mymenu?pageNumber=<%=pageNumber + 1%>">다음 ▶</a>
+				<%
+					}
+				%>
+				<a href="write" class="btn btn-success pull-right">글쓰기</a>
+			</div>
 		
 	</div>
 	
