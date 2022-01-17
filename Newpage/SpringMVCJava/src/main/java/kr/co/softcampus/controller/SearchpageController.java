@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class SearchpageController {
-	@RequestMapping(value="/searchpage" , method = {RequestMethod.POST,RequestMethod.GET})
+	@RequestMapping(value="/searchpage" , method = RequestMethod.GET)
 	public String Searchpage() {
 		return "searchpage";
 	}

@@ -4,6 +4,7 @@
 <%@ page import="bbs.BbsDAO" %>
 <%@ page import="bbs.Bbs" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.net.URLEncoder"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +46,7 @@
 <body>
 	<% 
 		request.setCharacterEncoding("UTF-8");
-		String searchField="선택";
+		String searchField="작성자";
 		String searchText="";
 		String userID=null;
 		if(session.getAttribute("userID") != null){
@@ -115,12 +116,8 @@
 	</nav>
 	
 	<div class="container">
-	<%
-	BbsDAO bbsDAO = new BbsDAO();
-	String a= request.getParameter("searchField");
-	String b= request.getParameter("searchText");
-	%>
-		<form method="post" name="search" action="searchpage">
+	
+		<form method="get" name="search" action="searchpage">
 				<table class="pull-right">
 					<tr>
 						<td><select class="form-control" name="searchField">
@@ -148,6 +145,9 @@
 			</thead>
 			<tbody>
 					<%
+						BbsDAO bbsDAO = new BbsDAO();
+						String a= request.getParameter("searchField");
+						String b= request.getParameter("searchText");
 						ArrayList<Bbs> list = bbsDAO.getSearch(pageNumber,a,b);
 						
 						
@@ -158,6 +158,7 @@
 							script.println("history.back()");
 							script.println("</script>");
 						}
+						
 						for (int i = 0; i < list.size(); i++) {
 					%>
 					<tr>
@@ -176,25 +177,37 @@
 		</table>
 		<div class=container style="text-align: center; font-size:20px; padding:30px;">
 				<%
-					if (pageNumber != 1) {//이전페이지로
+					if (pageNumber <= 1) {//이전페이지로
 				%>
-				<a href="searchpage?pageNumber=<%=pageNumber - 1%>">◀ 이전</a>
+					
 				<%
+					}else{
+				%>
+				<a class = "btn btn-success btn-arraw-left"  href="searchpage?searchField=<%=URLEncoder.encode(searchField,"UTF-8") %>&searchText=
+				<%=URLEncoder.encode(searchText, "UTF-8")%>&pageNumber=<%=pageNumber - 1%>">이전</a>
+				<% 
 					}
 				%>
 				<%
 					int n = (int) (bbsDAO.getCount(a,b) / 10 + 1);
 					for (int i = 1; i <= n; i++) {
 				%>
-				<a href="searchpage?pageNumber=<%=i%>"><%=i%>
+				<a href="Mymenu?pageNumber=<%=i%>"class = "btn btn-success btn-arraw-left" ><%=i%>
 				</a>
 				<%
 					}
 				%>
+				
 				<%
-					if (bbsDAO.nextPage(pageNumber + 1)) {
+					if (list.size()<10) {
 				%>
-				<a href="searchpage?pageNumber=<%=pageNumber + 1%>">다음 ▶</a>
+				
+				<%
+					}else{
+				%>
+				<a class = "btn btn-success btn-arraw-left"  href="searchpage?searchField=<%=URLEncoder.encode(searchField,"UTF-8") %>&searchText=
+				<%=URLEncoder.encode(searchText, "UTF-8")%>&pageNumber=<%=pageNumber + 1%>">다음</a>
+
 				<%
 					}
 				%>

@@ -44,7 +44,20 @@
 </head>
 <body>
 	<% 
+		request.setCharacterEncoding("UTF-8");
+		String searchField="선택";
+		String searchText="";
 		String userID=null;
+		if(session.getAttribute("userID") != null){
+			userID=(String)session.getAttribute("userID");
+		}
+		if(request.getParameter("searchField")!=null){
+			searchField=request.getParameter("searchField");
+		}
+		if(request.getParameter("searchText")!=null){
+			searchText=request.getParameter("searchText");
+		}
+		
 		if(session.getAttribute("userID") != null){
 			userID=(String)session.getAttribute("userID");
 		}
@@ -105,7 +118,7 @@
 	</nav>
 	
 	<div class="container">
-		<form method="post" name="search" action="searchpage">
+		<form method="get" name="search" action="searchpage">
 				<table class="pull-right">
 					<tr>
 						<td><select class="form-control" name="searchField">
@@ -151,7 +164,7 @@
 				<%
 					if (pageNumber != 1) {//이전페이지로
 				%>
-				<a href="Mymenu?pageNumber=<%=pageNumber - 1%>">◀ 이전</a>
+				<a href="Mymenu?pageNumber=<%=pageNumber - 1%>" class = "btn btn-success btn-arraw-left" >이전</a>
 				<%
 					}
 				%>
@@ -159,7 +172,7 @@
 					int n = (int) (bbsDAO.getCount() / 10 + 1);
 					for (int i = 1; i <= n; i++) {
 				%>
-				<a href="Mymenu?pageNumber=<%=i%>"><%=i%>
+				<a href="Mymenu?pageNumber=<%=i%>"class = "btn btn-success btn-arraw-left" ><%=i%>
 				</a>
 				<%
 					}
@@ -167,7 +180,7 @@
 				<%
 					if (bbsDAO.nextPage(pageNumber + 1)) {
 				%>
-				<a href="Mymenu?pageNumber=<%=pageNumber + 1%>">다음 ▶</a>
+				<a href="Mymenu?pageNumber=<%=pageNumber + 1%>"class = "btn btn-success btn-arraw-left">다음</a>
 				<%
 					}
 				%>
