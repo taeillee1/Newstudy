@@ -192,7 +192,8 @@
 					int n = (int) (bbsDAO.getCount(a,b) / 10 + 1);
 					for (int i = 1; i <= n; i++) {
 				%>
-				<a href="Mymenu?pageNumber=<%=i%>"class = "btn btn-success btn-arraw-left" ><%=i%>
+				<a href="searchpage?searchField=<%=URLEncoder.encode(searchField,"UTF-8") %>&searchText=
+				<%=URLEncoder.encode(searchText, "UTF-8")%>&pageNumber=<%=i%>"class = "btn btn-success btn-arraw-left" ><%=i%>
 				</a>
 				<%
 					}
